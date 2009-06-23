@@ -11,7 +11,6 @@ h2. Installation
 # Import config/exim/greylisting.sql to your database (optional)
 # Configure Exim MTA (see example in config/exim, copy init.conf.dist to init.conf)
 # Configure Dovecot (see example in condig/dovecot)
-
 # Setup and run mongrel/thin/passenger - you can log in now
 
 h2. Notes
