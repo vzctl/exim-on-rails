@@ -6,15 +6,10 @@ EximOnRails is open source and released under the terms of the GNU General Publi
 h2. Installation
 
 # Check out from git://github.com/vzctl/exim-on-rails.git
-
 # Configure database and update config/database.yml
-
 # Run rake db:migrate RAILS_ENV="production"
-
 # Import config/exim/greylisting.sql to your database (optional)
-
 # Configure Exim MTA (see example in config/exim, copy init.conf.dist to init.conf)
-
 # Configure Dovecot (see example in condig/dovecot)
 
 # Setup and run mongrel/thin/passenger - you can log in now
@@ -22,7 +17,6 @@ h2. Installation
 h2. Notes
 
 * You need to protect webapp by yourself (I prefer using nginx http auth + ssl)
-
 * Read exim config before using it in production - you must understand all internals
 
 h2. Support & getting help
