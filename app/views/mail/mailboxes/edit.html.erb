@@ -1,0 +1,7 @@
+<% @title = t('mailboxes.edit') %>
+<% content_for :content_header_links do %>
+  <%= separate_links(t('mailboxes.list')=>mail_domain_mailboxes_path(@domain), t('domains.list') => mail_domains_path) %>
+<% end %>
+<% form_for :mailbox, @mailbox, :url => {:action => :update}, :html => { :method => 'put'} do |f|%>
+  <%= render :partial => 'form', :locals => { :f=>f, :submit => t('common.forms.update') } %>
+<% end %>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <%= stylesheet_link_tag "main" %>
+    <%= javascript_include_tag :defaults %>
+    <title><%= Settings['project_title'] %></title>
+  </head>
+  <body>
+    <div id="page">
+      <table id="header">
+        <tr><td id="header_logo"><%= link_to Settings['project_title'], root_path %><%= header_title %></td>
+          <% if session[:admin] %>
+            <td id="header_links"></td>
+            <td id="header_account"></td>
+          <% end %>
+        </tr>
+      </table>
+      <%- if content_header_links = yield(:content_header_links)  -%>
+        <table id="content_header" cellpadding="0px" cellspacing="0px">
+          <tr>
+            <td style="width: 100%; text-align: right;"><img src="/images/lc_links.gif"></td>
+            <td id="content_links"><%= content_header_links %></td>
+          </tr>
+        </table>
+      <%- end -%>
+      <div id="flash">
+        <%- flash.each_pair do |k, v| -%>
+          <ul class="flash_<%= k %>"><li><%= v %></li></ul>
+        <%- end -%>
+      </div>
+      <div id="content">
+        <%= yield  %>
+      </div>
+      <div id="footer"><%= Settings['project_description'] %></div>
+    </div>
+  </body>
+</html>

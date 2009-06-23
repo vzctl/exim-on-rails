@@ -1,0 +1,32 @@
+<%= error_messages_for 'maillist' %>
+<br />
+<!--[form:maillist]-->
+<div id="maillist_form" class="form">
+  <p><label for="maillist_name"><%= t('maillists.address') %></label><br/>
+  <%= text_field 'maillist', 'name' %>@<%=@domain.name%></p>
+  <p><%= check_box 'maillist', 'enabled' %> <label for="maillist_enabled"><%= t('common.forms.enabled') %></label></p>
+  <p><label for="maillist_reply_flag"><%= t('maillists.reply') %></label><br/>
+    <%=radio_button('maillist','reply_flag', 'maillist', :onclick => "maillist_reply_custom.disabled='disabled'") %>
+    <label for="maillist_reply_flag_maillist"> <%= t('maillists.maillist') %></label>
+    <%=radio_button('maillist','reply_flag', 'sender', :onclick => "maillist_reply_custom.disabled='disabled'") %>
+    <label for="maillist_reply_flag_sender"> <%= t('maillists.sender') %></label>
+    <%=radio_button('maillist','reply_flag', 'custom',:onclick => "maillist_reply_custom.disabled=''") %>
+    <label for="maillist_reply_flag_custom"> <%= t('maillists.custom') %></label><br />
+    <%= text_field 'maillist', 'reply_custom',:disabled=>  (@maillist.reply_flag!='custom')  %></p>
+  <p><%= check_box :maillist, :public,  :onclick=>"new Effect.toggle('pub_options','slide',{duration: 0.2});"%>
+  <label for="maillist_public"><%= t('maillists.public_hint') %></label></p>
+  <div id="pub_options" style="<%= "display:none;" unless @maillist.public %>">
+    <%= check_box 'maillist', 'greylisting' %><label for="maillist_greylisting"> <%= t('spam.greylisting') %></label>
+    <p><%= check_box 'maillist', 'dnsbl' %><label for="maillist_dnsbl"> <%= t('spam.dnsbl') %></label></p>
+    <p>
+      <%= check_box 'maillist', 'spam_filter',
+        :onclick=>"if (this.checked){maillist_spam_barrier.disabled=''}else{maillist_spam_barrier.disabled='disabled'}" %>
+      <label for="maillist_spam_filter"><%= t('spam.barrier') %></label><br />
+    </p>
+    <p>
+      <label for="maillist_spam_barrier"><%= text_field 'maillist', 'spam_barrier', :disabled=>@maillist.spam_barrier.nil? %></label>
+    </p>
+  </div>
+  <%= submit_tag submit %>
+</div>
+<!--[eoform:maillist]-->

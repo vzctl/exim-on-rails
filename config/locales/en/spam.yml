@@ -1,0 +1,11 @@
+en:
+  spam:
+    filtering: Spam filtering
+    greylisting: Greylisting
+    dnsbl: DNSBL
+    spf: SPF
+    antivirus: Antivirus
+    scanner: Spam scanner
+    barrier: Spam barrier (20..200)
+    barrier_hint: Recommended 100 points
+    catcher: Spam catcher

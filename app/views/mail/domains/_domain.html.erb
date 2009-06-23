@@ -1,0 +1,29 @@
+<% content_tag_for(:tr, domain, :class=>cycle("odd","even")) do %>
+  <td>
+    <%= h(domain.name) %>
+    <% content_tag_for :table, domain, :aliases, :class=>'aliases_list' do %>
+      <%= render :partial => 'mail/domain_aliases/domain_alias', :locals=>{:domain => domain}, :collection => domain.aliases %>
+    <% end %>
+  </td>
+  <td class="itemcol">
+    <%= link_to t('common.links.add') , new_mail_domain_mailbox_path(domain) %>
+    <%= link_to t('common.links.list') , mail_domain_mailboxes_path(domain) %> |
+    <%= "#{domain.mailboxes.size} (#{domain.mailbox_aliases.size})" %>
+  </td>
+  <td class="itemcol">
+    <%= link_to t('common.links.add'), new_mail_domain_maillist_path(domain) %>
+    <%= link_to t('common.links.list'), mail_domain_maillists_path(domain) %> |
+    <%= domain.maillists.size %>
+  </td>
+  <td class="actions">
+    <table>
+      <% content_tag_for(:tr,domain,:actions) do %>
+        <td>
+          <%= link_to_remote t('common.links.add_alias'),  :url => new_mail_domain_alias_path(domain),  :method=> :get %>
+          <%= link_to t('common.forms.edit'), edit_mail_domain_path(domain)%>
+          <%= link_to t('common.forms.delete') , mail_domain_path(domain), :method => :delete, :confirm => t('common.forms.sure') %>
+        </td>
+      <% end %>
+    </table>
+  </td>
+<% end %>

@@ -1,0 +1,27 @@
+= Exim on Railse
+
+Exim on Rails is simple admin panel for Exim MTA written using Ruby on Rails framework.
+EximOnRails is open source and released under the terms of the GNU General Public License v2
+
+== Installation
+
+1. Check out from git://github.com/vzctl/exim-on-rails.git
+
+2. Run rake db:migrate RAILS_ENV="production"
+
+3. Import config/exim/greylisting.sql to your database (optional)
+
+4. Configure Exim MTA (see example in config/exim, copy init.conf.dist to init.conf)
+
+5. Configure Dovecot (see example in condig/dovecot)
+
+6. Setup and run mongrel/thin/passenger - you can log in now
+
+== Notes
+
+* You need to protect webapp by yourself (I prefer using nginx + http auth + ssl)
+
+== Support & getting help
+
+For getting help or discussing about Exim on Rails, you can join #support on the irc.realisticgroup.com or email to lex.public@gmail.com.
+

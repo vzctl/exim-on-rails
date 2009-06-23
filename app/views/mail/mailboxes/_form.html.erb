@@ -1,0 +1,56 @@
+<%= error_messages_for 'mailbox' %>
+<!--[form:mailbox]-->
+<div id="mailbox_form" class="form">
+  <table class="settings">
+    <tr>
+      <th></th>
+      <th><%= t('spam.filtering') %></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>
+        <%= hidden_field 'mailbox', 'lock_version' %>
+        <p><label for="mailbox_name"><%= t('mailboxes.address') %></label><br/>
+        <%= text_field 'mailbox', 'name' %>@<%=@domain.name%></p>
+        <p><%= check_box 'mailbox', 'enabled' %> <label for="mailbox_enabled"><%= t('common.forms.enabled') %></label></p>
+        <p><label for="mailbox_pass"><%= t('mailboxes.password') %></label><br/>
+        <%= password_field 'mailbox', 'pass' %></p>
+        <p><label for="mailbox_forward"><%= t('mailboxes.forward') %></label><br/>
+        <%= text_field 'mailbox', 'forward' %></p>
+        <p><%= check_box 'mailbox', 'keep_forwarded' %> <label for="mailbox_keep_forwarded"><%= t('mailboxes.keep_forwarded') %></label></p>
+        <p><label for="mailbox_note"><%= t('mailboxes.note') %></label><br/>
+        <%= text_area 'mailbox', 'note', :cols => 30, :rows => 5 %></p>
+      </td>
+      <td>
+        <p><%= check_box 'mailbox', 'spam_catcher', :onclick=>"new Element.toggle('spamoptions');"%>
+        <label for="mailbox_spam_catcher"><%= t('spam.catcher') %></label></p>
+        <div id="spamoptions" <%= 'style="display:none;"' if @mailbox.spam_catcher  %>>
+          <p><%= check_box 'mailbox', 'greylisting' %> <label for="mailbox_greylisting"><%= t('spam.greylisting') %></label></p>
+          <p><%= check_box 'mailbox', 'dnsbl' %> <label for="mailbox_dnsbl"><%= t('spam.dnsbl') %></label></p>
+          <p><%= check_box 'mailbox', 'spf' %> <label for="mailbox_spf"><%= t('spam.spf') %></label></p>
+          <p><%= check_box 'mailbox', 'spamscanner' %> <label for="mailbox_spamscanner"><%= t('spam.scanner') %></label></p>
+          <p><%= check_box 'mailbox', 'avscanner' %> <label for="mailbox_avscanner"><%= t('spam.antivirus') %></label></p>
+          <p>
+            <%= check_box 'mailbox', 'spam_filter',
+              :onclick=>"if (this.checked){mailbox_spam_barrier.disabled=''}else{mailbox_spam_barrier.disabled='disabled'}" %>
+            <label for="mailbox_spam_filter"><%= t('spam.barrier') %></label><br />
+          </p>
+          <p>
+            <%= text_field 'mailbox', 'spam_barrier', :disabled=>@mailbox.spam_barrier.nil? %><br/>
+            <label for="mailbox_spam_barrier"><%= t('spam.barrier_hint') %></label>
+          </p>
+        </div>
+      </td>
+      <td>
+        <label for="mailbox_vacation_message"><%= t('mailboxes.vacation_message') %></label><br/>
+        <%= text_area 'mailbox', 'vacation_message', :disabled=>@mailbox.vacation_message.nil? %>
+        <br/>
+        <%= check_box 'mailbox', 'vacation',
+          :onclick=>"if (this.checked){mailbox_vacation_message.disabled=''}else{mailbox_vacation_message.disabled='disabled'}" %>
+      <label for="mailbox_vacation"><%= t('mailboxes.vacation') %></label><br />
+      </td>
+    </tr>
+  </table>
+  <%= submit_tag submit %>
+</div>
+<!--[eoform:mailbox]-->

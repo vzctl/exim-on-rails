@@ -1,0 +1,47 @@
+<%= error_messages_for 'domain' %>
+<!--[form:domain]-->
+<div id="domain_form" class="form">
+  <table class="settings">
+    <tr>
+      <th></th>
+      <th><%= t('domains.default_mailbox') %></th>
+    </tr>
+    <tr>
+      <td>
+        <%= hidden_field 'domain', 'lock_version' %>
+        <p><label for="domain_name"><%= t('domains.name') %></label><br/>
+        <%= text_field 'domain', 'name' %></p>
+        <p><%= check_box 'domain', 'enabled' %> <label for="domain_enabled"><%= t('common.forms.enabled') %></label></p>
+        <p><label for="domain_catch_unroutable"><%= t('domains.catch_emails') %>:</label><br/>
+        <%= text_field 'domain', 'catch_unroutable' %></p>
+        <p><label for="domain_archive"><%= t('domains.copy_emails') %>:</label><br/>
+        <%= text_field 'domain', 'archive' %></p>
+      </td>
+      <td>
+        <p>
+          <div class="settings_wrapper">
+            <p><%= check_box 'domain', 'mailbox_greylisting' %> <label for="domain_mailbox_greylisting"><%= t('spam.greylisting') %></label></p>
+            <p><%= check_box 'domain', 'mailbox_dnsbl' %> <label for="domain_mailbox_dnsbl"><%= t('spam.dnsbl') %></label></p>
+            <p><%= check_box 'domain', 'mailbox_spf' %> <label for="domain_mailbox_spf"><%= t('spam.spf') %></label></p>
+            <p><%= check_box 'domain', 'mailbox_spamscanner' %> <label for="domain_mailbox_spamscanner"><%= t('spam.scanner') %></label></p>
+            <p><%= check_box 'domain', 'mailbox_avscanner' %> <label for="domain_mailbox_avscanner"><%= t('spam.antivirus')  %></label></p>
+            <p>
+              <%= check_box 'domain', 'mailbox_spam_filter',
+                :onclick=>"if (this.checked){domain_mailbox_spam_barrier.disabled=''}else{domain_mailbox_spam_barrier.disabled='disabled'}" %>
+            <label for="domain_mailbox_spam_filter"><%= t('spam.barrier') %></label><br />
+            </p>
+            <p>
+              <%= text_field 'domain', 'mailbox_spam_barrier', :disabled=>@domain.mailbox_spam_barrier.nil? %><br>
+              <label for="domain_mailbox_spam_barrier"><%= t('spam.barrier_hint') %></label>
+            </p>
+            <% unless @domain.new_record? %>
+              <p><%= check_box_tag 'reset_spam_options' %> <label for="reset_spam_options"><%= t('domains.default_mailbox_to_all') %></label></p>
+            <% end %>
+          </div>
+        </p>
+      </td>
+    </tr>
+  </table>
+  <%= submit_tag submit %>
+</div>
+<!--[eoform:domain]-->

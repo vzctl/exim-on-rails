@@ -1,0 +1,13 @@
+en:
+  domains:
+    list: Domains
+    add: Add domain
+    edit: Edit Domain
+    name: Domain name
+    mailboxes: Mailboxes (aliased)
+    maillists: Maillists
+    catch_emails: Catch unroutable emails to
+    copy_emails: Copy all emails to
+    default_mailbox: Default mailbox settings
+    default_mailbox_to_all: Set to all existing mailboxes
+

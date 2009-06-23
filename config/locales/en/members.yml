@@ -1,0 +1,9 @@
+en:
+  members:
+    list: Members list
+    add: Add member
+    edit: Edit member
+    address: Address
+    address_hint: Address must be exists for local domains
+    type: Type
+

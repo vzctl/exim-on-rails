@@ -1,0 +1,31 @@
+require 'rake'
+
+task :default => [:test_behaviors]
+
+desc "Updates the load path to include all necessary vendor libraries and the code under test"
+task :set_load_path do
+  Dir['vendor/*'].each do |dir|
+    next unless File.directory?(dir)
+
+    lib_folder = File.join(dir, 'lib')
+    next unless File.directory?(lib_folder)
+
+    $LOAD_PATH.unshift lib_folder
+  end
+
+  $LOAD_PATH.unshift 'lib'
+  $LOAD_PATH.unshift 'test'
+  (Dir['test/**/*.rb'] - Dir['test/**/*_helper.rb']).each {|file| require file }
+end
+
+desc "Runs behavioral tests"
+task :test_behaviors => [:set_load_path] do
+  require 'spec'
+  require 'spec/rake/spectask'
+  Spec::Rake::SpecTask.new do |t|
+  t.spec_files = FileList['test/specs/*_spec.rb']
+  t.spec_opts = ['--options', 'spec.opts']
+  t.rcov = false
+  end
+end
+

@@ -1,0 +1,14 @@
+<% content_tag_for :td, @mailbox, :subscribe do %>
+  <%= link_to_function t('common.forms.return'), update_page{|page|
+    page.hide("subscribe_mail_mailbox_#{@mailbox.id}")
+    page.show("ml_actions_mail_mailbox_#{@mailbox.id}")
+    page.remove("subscribe_mail_mailbox_#{@mailbox.id}") } %>
+  <% if @maillists.blank? %>
+      <%= t('common.texts.nothing') %>
+  <% else %>
+    <% form_tag subscribe_mail_domain_mailbox_path(params[:domain_id], params[:id]),:action => :subscribe  do -%>
+      <%= collection_select(:maillist, :id, @maillists, :id, :address, {:prompt => true}) %>
+      <%= submit_tag t('maillists.subscribe') %>
+    <%- end -%>
+  <%- end -%>
+<%- end -%>

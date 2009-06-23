@@ -1,0 +1,4 @@
+page.insert_html :bottom, "aliases_mail_mailbox_#{@mailbox.id}",
+  :partial => 'mail/mailbox_aliases/mailbox_alias',
+  :locals=>{:mailbox=>@mailbox, :mailbox_alias=>@alias}
+page["mail_mailbox_alias_#{@alias.id}"].visual_effect :highlight

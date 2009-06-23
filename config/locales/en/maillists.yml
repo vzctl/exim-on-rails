@@ -1,0 +1,16 @@
+en:
+  maillists:
+    list: Maillists
+    add: Add maillist
+    edit: Edit maillist
+    address: Address
+    subscribe: Subscrube
+    unsubscribe: Unsubscribe
+    members: Members
+    public: Public
+    public_hint: Allow sending for non-members
+    reply: Reply-to address
+    maillist: Maillist
+    sender: Sender
+    custom: Custom
+

@@ -1,0 +1,36 @@
+CONFIG_HOSTNAME			= mail.example.com
+CONFIG_MYSQL_SERVER		= localhost/database/user/password
+
+ENABLE_SPF			= 1
+ENABLE_DOMAINKEYS		= 1
+ENABLE_GREYLISTING		= 1
+ENABLE_DOVECOT			= 1
+#ENABLE_UNSECURE_AUTH		= 1
+
+GREYLIST_INITIAL_DELAY          = 1 HOUR
+GREYLIST_INITIAL_LIFETIME       = 4 HOUR
+GREYLIST_WHITE_LIFETIME         = 36 DAY
+GREYLIST_BOUNCE_LIFETIME        = 0 HOUR
+GREYLIST_TABLE                  = `greylisting`.`greylist`
+GREYLIST_LOG_TABLE              = `greylisting`.`greylist_log`
+
+POSTMASTER_ADDR			= :blackhole:
+POSTMASTER_ALIASES              = abuse : postmaster : noc : security : no-reply
+BOGUS_ADDRS                     = apache : mysql :cron : root
+
+WHITELIST_TABLE			= `greylisting`.`domain_whitelist`
+SEND_TABLE			= `greylisting`.`sended_list`
+
+#WHITELIST_DNS			= white.example.com
+#BLACKLIST_DNS			= black.example.com
+RELAYED_HOSTS                   = 127.0.0.1 : 10.0.0.0/8 : 217.106.233.0/24 : 217.106.231.0/24 : 217.106.234.0/24
+
+ACL_SPAMSCORE			= acl_m0
+ACL_SPAMBARRIER                 = acl_m1
+ACL_WHITELIST			= acl_m2
+ACL_BLACKLIST                   = acl_m3
+ACL_SPAMBLOCK			= acl_m4
+ACL_DELAY			= acl_c0
+
+DK_SELECTOR			= your-dk-selector
+#SEND_ADDRESS			= xx.xx.xx.xx

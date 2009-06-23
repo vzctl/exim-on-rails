@@ -1,0 +1,15 @@
+en:
+  mailboxes:
+    list: Mailboxes
+    add: Add mailbox
+    edit: Edit mailbox
+    address: Address
+    aliases: aliases
+    note: Note
+    forward_to: forward to
+    password: Password
+    forward: Forward address
+    keep_forwarded: Keep forwarded
+    vacation: Vacation
+    vacation_message: Vacation message
+

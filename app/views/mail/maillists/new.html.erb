@@ -1,0 +1,7 @@
+<% @title = t('maillists.add') %>
+<% content_for :content_header_links do %>
+  <%= separate_links t('maillists.list') => mail_domain_maillists_path(@domain), t('domains.list') => mail_domains_path  %>
+<% end %>
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form', :locals => { :submit =>t('common.forms.create') } %>
+<% end %>

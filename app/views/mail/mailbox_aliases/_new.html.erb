@@ -1,0 +1,13 @@
+<% content_tag_for(:td, @mailbox,:alias) do %>
+  <%= link_to_function t('common.forms.return'),
+    update_page{|page|
+    page.hide("alias_mail_mailbox_#{@mailbox.id}")
+    page.show("actions_mail_mailbox_#{@mailbox.id}")
+    page.remove("alias_mail_mailbox_#{@mailbox.id}") } %>
+
+  <%- form_remote_tag :url => mail_domain_mailbox_aliases_path(params[:domain_id],params[:mailbox_id]),
+    :action => :create, :method => :post  do -%>
+    <%= text_field :alias, :address %>
+    <%= submit_tag t('common.forms.create') %>
+  <%- end %>
+<% end %>

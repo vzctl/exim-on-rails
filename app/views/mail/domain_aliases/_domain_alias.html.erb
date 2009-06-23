@@ -1,0 +1,7 @@
+<% content_tag_for(:tr, domain_alias, :class=>"alias_item") do %>
+  <td class="alias_name">&rarr; <%= h(domain_alias.name) %></td>
+  <td class="alias_actions">
+    <%=   link_to_remote t('common.links.drop'), :url  => mail_domain_alias_path(domain,domain_alias), :method => :delete,
+      :html => { :class  => "destructive" }, :confirm => t('common.forms.sure') %>
+  </td>
+<% end %>

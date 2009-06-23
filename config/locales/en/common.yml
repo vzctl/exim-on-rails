@@ -1,0 +1,32 @@
+en:
+  common:
+    texts:
+      nothing: Nothing here
+    links:
+      add: add
+      show: show
+      list: list
+      drop: drop
+      add_alias: Add alias
+    forms:
+      lowercase_add: add
+      add: Add
+      create: Create
+      refresh: Refresh
+      view: View
+      lowercase_remove: remove
+      remove: Remove
+      delete: Delete
+      edit: Edit
+      update: Update
+      save: Save
+      sure: Are you sure?
+      return: return
+      enabled: Enabled
+    flash:
+      updated: Information has been updated
+      deleted: Object has been deleted
+      created: Object has been created
+      staled: Object has been changed somebody else
+      error: Error occured
+      demo: This is restricted in demo

@@ -1,0 +1,28 @@
+<table class="settings light_grid" id="catchers_table">
+  <tr id="catchers_header">
+    <th>Address</th>
+    <th>Hits</th>
+    <th>BL</th>
+    <th></th>
+  </tr>
+  <%= render :partial=>'catcher', :collection=>@catchers %>
+</table>
+
+<script type="text/javascript">
+<%#$$('div#catchers_table input')%>
+$A($('catchers_table').getElementsByTagName("input")).each(function(item)
+{Event.observe(item, "click", function(e){ send_data(item)})}
+)
+
+function send_data(item)
+{
+    var url
+    url = '<%= mail_domain_spam_catchers_path(@domain.id) %>/'+item.name+'/action/?act='+((item.checked) ? '1' : '0')
+    //url
+    new Ajax.Request(url, {
+        method: 'put',
+        parameters: {authenticity_token: $$('input[name="authenticity_token"]')[0].value},
+        onFailure: function(){ alert('Ajax работать не хочет!') }
+    });
+}
+</script>

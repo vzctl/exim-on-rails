@@ -1,0 +1,12 @@
+log/*
+tmp/*
+*.log
+*.pid
+*.swp
+*.tmp
+*.md5
+*secret
+db/*.sqlite3
+app/*/dns*
+nbproject
+config/deploy.rb

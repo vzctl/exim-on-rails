@@ -1,0 +1,11 @@
+# Outgoing email settings
+
+production:
+  delivery_method: :sendmail
+  smtp_settings:
+    address: smtp.somenet.foo
+    port: 25
+    domain: somenet.foo
+    authentication: :login
+    user_name: recontrol@somenet.foo
+    password: recontrol

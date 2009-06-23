@@ -1,0 +1,40 @@
+<% @title = t('maillists.list') %>
+<% content_for :content_header_links do %>
+  <%= separate_links(t('mailboxes.list')=>mail_domain_mailboxes_path(@domain), t('domains.list') => mail_domains_path) %>
+<% end %>
+<h3><%= @mailbox.address %> maillists</h3>
+<%= error_messages_for 'member' %>
+<div class="itemlist">
+  <table>
+    <tr>
+      <th><%= t('maillists.address') %></th>
+      <th></th>
+    </tr>
+    <% for maillist_member in @mailbox.maillist_members %>
+      <tr class="<%= cycle("odd", "even")%>">
+        <td>
+          <%= maillist_member.maillist.address %>
+        </td>
+        <td class="actions">
+          <%= link_to t('maillists.unsubscribe'),
+            mail_domain_maillist_member_path(maillist_member.maillist.domain.id,maillist_member.maillist.id,maillist_member.id),
+            :action => 'destroy', :method => :delete, :confirm => t('common.forms.sure')%>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <table class="itemlist_footer">
+    <tr>
+      <td class="itemlist_counter">
+        <nobr><%= @mailbox.maillist_members.size %></nobr>
+      </td>
+      <td class="itemlist_action">
+        <% form_tag subscribe_mail_domain_mailbox_path(params[:domain_id], params[:id]),:action => :subscribe  do -%>
+          <%= collection_select(:maillist, :id, @maillists, :id, :address, {:prompt => true}) %>
+          <%= submit_tag t('maillists.subscribe') %>
+        <%- end %>
+      </td>
+    </tr>
+  </table>
+</div>

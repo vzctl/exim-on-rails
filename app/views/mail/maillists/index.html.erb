@@ -1,0 +1,35 @@
+<% @title = t('maillists.list') %>
+<% content_for :content_header_links do %>
+  <%= separate_links t('maillists.add') => new_mail_domain_maillist_path(@domain), t('domains.list') => mail_domains_path  %>
+<% end %>
+<% if @domain.maillists.blank? %>
+  <p><%= t('common.texts.nothing') %></p>
+<% else %>
+  <div class="itemlist">
+    <table>
+      <tr class="itemlist_header">
+        <th><%= t('maillists.address') %></th>
+        <th><%= t('maillists.members') %></th>
+        <th><%= t('maillists.public') %></th>
+        <th></th>
+      </tr>
+      <%- for maillist in @domain.maillists -%>
+        <tr class="<%= cycle("odd", "even")%>">
+          <td><%=  h(maillist.address) %></td>
+          <td class="itemcol"><%= link_to t('common.links.add'), new_mail_domain_maillist_member_path(@domain,maillist)%>
+            <%= link_to t('common.links.list'), mail_domain_maillist_members_path(@domain,maillist) %> |
+            <%= maillist.members.size %></td>
+          <td class="itemcol"><%=t('maillists.public') if maillist.public %></td>
+          <td class="actions">
+            <%= link_to t('common.forms.edit'), edit_mail_domain_maillist_path(@domain,maillist) %>
+            <%= link_to t('common.forms.delete'), { :action => 'destroy', :domain_id => @domain, :id => maillist}, :method => :delete,
+              :confirm => t('common.forms.sure') %>
+          </td>
+        </tr>
+      <%- end -%>
+    </table>
+  </div>
+<% end %>
+<div class="add_action">
+  <%= link_to t('maillists.add'), new_mail_domain_maillist_path(@domain) %>
+</div>

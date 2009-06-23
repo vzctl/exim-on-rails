@@ -1,0 +1,51 @@
+<% @title = t('mailboxes.list') %>
+<% content_for :content_header_links do %>
+  <%= separate_links( t('mailboxes.add') =>new_mail_domain_mailbox_path(@domain), t('domains.list') => mail_domains_path) %>
+<% end %>
+<% if @mailboxes.blank? %>
+  <p><%= t('common.texts.nothing') %></p>
+<% else%>
+  <div class="itemlist">
+    <table>
+      <tr class="itemlist_header">
+        <th><%= t('mailboxes.address') %> / <%= t('mailboxes.aliases') %></th>
+        <th><%= t('maillists.list') %></th>
+        <th><%= t('mailboxes.note') %></th>
+      </tr>
+      <% for mailbox in @mailboxes %>
+        <% content_tag_for(:tr, mailbox, :class=>cycle("odd","even")) do %>
+          <td>
+            <%= link_to image_tag('address.png'),"mailto:#{mailbox.address}", :class=>'item_icon' %>
+            <%= h(mailbox.address) %>
+            <% content_tag_for :table, mailbox, :aliases, :class=>'aliases_list' do %>
+              <%= render :partial => 'mail/mailbox_aliases/mailbox_alias', :locals=>{:mailbox=>mailbox}, :collection=> mailbox.aliases %>
+            <% end %>
+            <div class="forward"><%= "#{t('mailboxes.forward_to')} #{mailbox.forward}" unless mailbox.forward.blank? %></div>
+          </td>
+          <% content_tag_for :td, mailbox, :ml_actions, :class=>'aliases_list itemcol' do %>
+            <%=link_to_remote t('common.links.add'), :url => maillists_mail_domain_mailbox_path(@domain,mailbox), :method=> :get %>
+            <%=link_to t('common.links.list'),maillists_mail_domain_mailbox_path(@domain,mailbox) %> |
+            <%= mailbox.maillist_members_count%>
+          <% end %>
+          <td class="itemcol"><%= mailbox.note ? h(mailbox.note) : '—' %></td>
+          <td class="actions">
+            <table>
+              <% content_tag_for :tr, mailbox, :actions, :class=>'actions' do %>
+                <td>
+                  <%= link_to_remote t('common.links.add_alias'), :url => new_mail_domain_mailbox_alias_path(@domain,mailbox), :method=> :get -%>
+                  <%= link_to t('common.forms.edit'), edit_mail_domain_mailbox_path(@domain,mailbox) -%>
+                  <%= link_to t('common.forms.delete'), mail_domain_mailbox_path(@domain,mailbox), :class  => "destructive", :method => :delete,
+                    :confirm => t('common.forms.sure')-%>
+                </td>
+              <% end %>
+            </table>
+          </td>
+        <% end %>
+      <%end%>
+    </table>
+  </div>
+<% end %>
+
+<div class="add_action">
+  <%= link_to t('mailboxes.add'), new_mail_domain_mailbox_path(@domain) %>
+</div>

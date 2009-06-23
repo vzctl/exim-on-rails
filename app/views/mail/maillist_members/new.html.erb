@@ -1,0 +1,9 @@
+<% @title = t('members.add') %>
+<% content_for :content_header_links do %>
+  <%= separate_links t('members.list') =>  mail_domain_maillist_members_path(@domain,@maillist),
+    t('maillists.list') => mail_domain_maillists_path(@domain), t('domains.list') => mail_domains_path  %>
+<% end %>
+
+<% form_for :member, :url =>  mail_domain_maillist_members_path(@domain, @maillist) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f, :submit =>t('common.forms.create') } %>
+<% end %>

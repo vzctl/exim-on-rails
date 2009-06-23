@@ -1,0 +1,14 @@
+<% content_tag_for(:tr, catcher) do %>
+  <td><%= catcher.address %></td>
+  <td><%= catcher.hitcount %></td>
+  <td>
+    <%= check_box_tag catcher.id, '', catcher.action==1  %>
+  </td>
+  <td>
+    <%= link_to_remote t('common.forms.delete'),
+      :url  => mail_domain_spam_catcher_path(@domain,catcher),
+      :method => :delete,
+      :html => { :class  => "destructive"},
+      :confirm => t('common.forms.sure') %>
+  </td>
+<% end %>

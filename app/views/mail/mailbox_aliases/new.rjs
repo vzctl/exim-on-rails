@@ -1,0 +1,2 @@
+page.hide("actions_mail_mailbox_#{@mailbox.id}")
+page.insert_html  :after, "actions_mail_mailbox_#{@mailbox.id}", :partial=>'mail/mailbox_aliases/new'

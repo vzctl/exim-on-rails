@@ -1,0 +1,10 @@
+<%= error_messages_for 'member' %>
+<br />
+<!--[form:maillist_member]-->
+<div id="maillist_form" class="form">
+  <p><label for="member_name"><%= t('members.address') %></label><br/>
+    <%= text_field_tag  'address', params[:address] %> <small><%= t('members.address_hint') %></small>
+  </p>
+  <%= submit_tag submit %>
+</div>
+<!--[eoform:maillist_member]-->

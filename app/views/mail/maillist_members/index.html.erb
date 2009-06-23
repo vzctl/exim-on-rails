@@ -1,0 +1,31 @@
+<% @title = t('members.list') %>
+<% content_for :content_header_links do %>
+  <%= separate_links t('members.add') => new_mail_domain_maillist_member_path(@domain,@maillist),
+    t('maillists.list') => mail_domain_maillists_path(@domain), t('domains.list') => mail_domains_path  %>
+<% end %>
+<% if @members.blank? %>
+  <p><%= t('common.texts.nothing') %></p>
+<% else %>
+  <div class="itemlist">
+    <table>
+      <tr class="itemlist_header">
+        <th><%= t('members.type') %></th>
+        <th><%= t('members.address') %></th>
+      </tr>
+      <% @members.each do |member| %>
+        <tr class="<%= cycle("odd", "even")%>">
+          <td><%= member.member_type %></td>
+          <td><%=h(member.address)%></td>
+          <td>
+            <%= link_to t('common.forms.delete'), mail_domain_maillist_member_path(@domain,@maillist,member), :action => 'destroy', :method => :delete,
+              :confirm => t('common.forms.sure') %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+
+<div class="add_action">
+  <%= link_to t('members.add'), new_mail_domain_maillist_member_path(@domain,@maillist) %>
+</div>

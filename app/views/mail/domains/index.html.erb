@@ -1,0 +1,21 @@
+<% @title = t('domains.list') %>
+<% content_for :content_header_links do %>
+  <%= separate_links( t('domains.add') =>new_mail_domain_path) %>
+<% end  %>
+<% if @parent_domains.blank? %>
+  <p><%= t('common.texts.nothing') %></p>
+<% else %>
+  <div class="itemlist">
+    <table>
+      <tr class="itemlist_header">
+        <th><%= t('domains.name') %></th>
+        <th><%= t('domains.mailboxes') %></th>
+        <th><%= t('domains.maillists') %></th>
+      </tr>
+      <%= render :partial  => 'domain', :collection=>@parent_domains %>
+    </table>
+  </div>
+<% end %>
+<div class="add_action">
+  <%= link_to t('domains.add'), new_mail_domain_path %>
+</div>

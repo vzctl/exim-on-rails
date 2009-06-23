@@ -1,0 +1,7 @@
+en:
+  errors:
+    session_expired: Session expired
+    auth_failed: Authentication error
+    changed_ip: Your ip-address has been changed
+    change_password: You must change password
+    enable_cookies: You should enable JavaScript and cookies
