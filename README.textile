@@ -1,9 +1,9 @@
-= Exim on Railse
+h1. Exim on Rails
 
 Exim on Rails is simple admin panel for Exim MTA written using Ruby on Rails framework.
 EximOnRails is open source and released under the terms of the GNU General Public License v2
 
-== Installation
+h2. Installation
 
 1. Check out from git://github.com/vzctl/exim-on-rails.git
 
@@ -17,11 +17,11 @@ EximOnRails is open source and released under the terms of the GNU General Publi
 
 6. Setup and run mongrel/thin/passenger - you can log in now
 
-== Notes
+h2. Notes
 
 * You need to protect webapp by yourself (I prefer using nginx + http auth + ssl)
 
-== Support & getting help
+h2. Support & getting help
 
 For getting help or discussing about Exim on Rails, you can join #support on the irc.realisticgroup.com or email to lex.public@gmail.com.
 
