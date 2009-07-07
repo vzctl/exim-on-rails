@@ -7,7 +7,7 @@ h2. Installation
 
 # Check out from git://github.com/vzctl/exim-on-rails.git
 # Configure database and update config/database.yml
-# Run rake db:migrate RAILS_ENV="production"
+# Run rake db:schema:load RAILS_ENV="production"
 # Import config/exim/greylisting.sql to your database (optional)
 # Configure Exim MTA (see example in config/exim, copy init.conf.dist to init.conf)
 # Configure Dovecot (see example in condig/dovecot)
